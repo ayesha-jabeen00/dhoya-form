@@ -98,7 +98,7 @@ export default function PlayerRegistrationForm() {
                 <form onSubmit={handleSubmit} className="contact-form">
                     {/* Photo */}
                     <div className="form-group photo-upload-group">
-                        <label>Player Photo</label>
+                        <label>PLAYER PHOTO</label>
 
                         <div className="photo-upload-container">
                             <input
@@ -140,7 +140,7 @@ export default function PlayerRegistrationForm() {
 
                     {/* Name */}
                     <div className="form-group">
-                        <label>Full Name *</label>
+                        <label>FULL NAME*</label>
                         <input
                             type="text"
                             name="fullName"
@@ -154,7 +154,7 @@ export default function PlayerRegistrationForm() {
 
                     {/* Village */}
                     <div className="form-group">
-                        <label>Village *</label>
+                        <label>VILLAGE*</label>
                         <input
                             type="text"
                             name="village"
@@ -168,7 +168,7 @@ export default function PlayerRegistrationForm() {
 
                     {/* Panchayat */}
                     <div className="form-group">
-                        <label>Panchayat</label>
+                        <label>PANCHAYAT</label>
                         <input
                             type="text"
                             name="panchayat"
@@ -181,7 +181,7 @@ export default function PlayerRegistrationForm() {
 
                     {/* Block */}
                     <div className="form-group">
-                        <label>Block</label>
+                        <label>BLOCK</label>
                         <input
                             type="text"
                             name="block"
@@ -194,7 +194,7 @@ export default function PlayerRegistrationForm() {
 
                     {/* Playing Role */}
                     <div className="form-group">
-                        <label>Playing Role *</label>
+                        <label>PLAYING ROLE*</label>
 
                         <div className="radio-group">
                             <label className="radio-option">
@@ -288,11 +288,11 @@ export default function PlayerRegistrationForm() {
 
                     {/* Aadhaar */}
                     <div className="aadhaar-section">
-                        <h3 className="section-title">Aadhaar Details (MANDATORY)</h3>
+                        <h3 className="section-title">AADHAAR DETAILS (MANDATORY)</h3>
 
                         {/* Aadhaar Number */}
                         <div className="form-group">
-                            <label>Aadhaar Number *</label>
+                            <label>AADHAAR NUMBBER*</label>
                             <input
                                 type="text"
                                 name="aadhaarNumber"
@@ -349,7 +349,7 @@ export default function PlayerRegistrationForm() {
 
 
                     <button type="submit" className="submit-button">
-                        Register Now
+                        REGISTER NOW
                     </button>
                 </form>
             </div>
