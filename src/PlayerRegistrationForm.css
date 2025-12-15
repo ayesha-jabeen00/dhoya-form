@@ -1,0 +1,611 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+.form-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: 'Outfit', sans-serif;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-page::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-2%, -2%) rotate(5deg);
+  }
+}
+
+.form-container {
+  width: 100%;
+  max-width: 620px;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.league-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+}
+
+.league-logo svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.4));
+}
+
+.form-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.form-subtitle {
+  font-size: 1.25rem;
+  color: #2c2e31;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  letter-spacing: 0.01em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  color: #f1f5f9;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #64748b;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15),
+    0 0 20px rgba(99, 102, 241, 0.1);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.photo-upload-group {
+  margin-bottom: 0.5rem;
+}
+
+.photo-upload-container {
+  position: relative;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload-label {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  border: 2px dashed rgba(148, 163, 184, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.file-upload-label:hover {
+  border-color: #6366f1;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0.5rem;
+  color: #94a3b8;
+}
+
+.upload-placeholder svg {
+  width: 32px;
+  height: 32px;
+}
+
+.upload-placeholder span {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-group.inline {
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.radio-option:hover {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.radio-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #6366f1;
+}
+
+.radio-label {
+  font-size: 0.9375rem;
+  color: #e2e8f0;
+  font-weight: 400;
+}
+
+.radio-option input[type="radio"]:checked+.radio-label {
+  font-weight: 600;
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: #6366f1;
+}
+
+.style-group {
+  margin-top: -0.5rem;
+  padding-left: 1rem;
+}
+
+.aadhaar-section {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title::before {
+  content: '⚠';
+  font-size: 1.25rem;
+  color: #fbbf24;
+}
+
+.file-upload-group {
+  margin-top: 1rem;
+}
+
+.file-upload-label-simple {
+  display: block;
+  padding: 0.875rem 1rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.file-upload-label-simple:hover {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: #6366f1;
+}
+
+.file-placeholder,
+.file-selected {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #94a3b8;
+  font-size: 0.9375rem;
+}
+
+.file-selected {
+  color: #22c55e;
+}
+
+.file-placeholder svg,
+.file-selected svg {
+  width: 20px;
+  height: 20px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.success-container {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+  }
+}
+
+.success-icon svg {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: drawCheck 0.5s ease-out 0.2s forwards;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.02em;
+}
+
+.success-message {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+.reset-button {
+  padding: 0.875rem 2rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+  color: #e2e8f0;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.reset-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(148, 163, 184, 0.5);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .form-page {
+    padding: 1rem;
+  }
+
+  .form-container {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .form-subtitle {
+    font-size: 1rem;
+  }
+
+  .league-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .radio-group.inline {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .success-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .success-title {
+    font-size: 1.5rem;
+  }
+}
+
+.league-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.4));
+  border-radius: 12px;
+}
+
+/* Hide native file inputs */
+.file-input {
+  display: none;
+}
+
+/* Aadhaar upload button full width */
+.file-upload-label-simple {
+  text-align: center;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+/* Upload icon center fix */
+.upload-placeholder {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Make radio rows clickable */
+.radio-option {
+  cursor: pointer;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 6px;
+  color: #94a3b8;
+}
+
+.upload-placeholder svg {
+  width: 28px;
+  height: 28px;
+  color: #94a3b8;
+}
+
+.file-upload-label:hover .upload-placeholder svg {
+  color: #6366f1;
+}
+
+.upload-placeholder span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Aadhaar upload full-width styled button */
+.file-upload-label-simple {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.file-upload-label-simple:hover {
+  border-color: #6366f1;
+  background: rgba(15, 23, 42, 0.7);
+}
+
+/* File placeholder + selected */
+.file-placeholder,
+.file-selected {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.file-placeholder {
+  color: #94a3b8;
+}
+
+.file-selected {
+  color: #22c55e;
+  font-weight: 500;
+}
+
+/* Hide native file input */
+.file-input {
+  display: none;
+}
+
+.aadhaar-section input[type="text"],
+.file-upload-label-simple {
+  height: 54px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
