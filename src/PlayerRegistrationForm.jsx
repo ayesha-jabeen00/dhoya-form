@@ -83,17 +83,18 @@ export default function PlayerRegistrationForm() {
         <div className="form-page">
             <div className="form-container">
                 <div className="form-header">
-                    <div className="league-logo">
-                        <img
-                            src="src/assets/retouch_2025112713041441[2].jpg"
-                            alt="Dhoya Premiere League Logo"
-                            className="league-logo-img"
-                        />
-                    </div>
+  <div className="league-logo">
+    <img
+      src="/dhoya-logo.jpg"
+      alt="Dhoya Premiere League Logo"
+      className="league-logo-img"
+    />
+  </div>
 
-                    <h1 className="form-title">DHOYA PREMIERE LEAGUE</h1>
-                    <p className="form-subtitle">SEASON - 7</p>
-                </div>
+  <h1 className="form-title">DHOYA PREMIERE LEAGUE</h1>
+  <p className="form-subtitle">SEASON - 7</p>
+</div>
+
 
                 <form onSubmit={handleSubmit} className="contact-form">
                     {/* Photo */}
