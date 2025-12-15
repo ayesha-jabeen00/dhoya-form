@@ -28,7 +28,7 @@
   justify-content: center;
   padding: 2rem;
   font-family: 'Sora', sans-serif;
-  background: linear-gradient(135deg, #0a080f 0%, #1a1625 25%, #2d1b4e 50%, #1a1625 75%, #0a080f 100%);
+  background: linear-gradient(180deg, #697e91 0%, #8094d2 10%, #eaeef2 100%);
   position: relative;
   overflow: hidden;
 }
@@ -41,12 +41,11 @@
   width: 200%;
   height: 200%;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(0, 217, 255, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(192, 132, 252, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(195, 142, 180, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(134, 168, 207, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(225, 197, 215, 0.08) 0%, transparent 60%);
   animation: float 25s ease-in-out infinite;
 }
-
 @keyframes float {
 
   0%,
@@ -92,8 +91,8 @@
 }
 
 .league-logo {
-  width: 95px;
-  height: 95px;
+  width: 120px;
+  height: 120px;
   margin: 0 auto 1rem;
 }
 
@@ -118,7 +117,7 @@
 
 .form-subtitle {
   font-size: 1.125rem;
-  color: var(--accent-light);
+  color: var(--text-primary);
   margin: 0;
   font-weight: 600;
   letter-spacing: 0.08em;

@@ -1,172 +1,206 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import "./PlayerRegistrationForm.css";
 
 export default function PlayerRegistrationForm() {
-    const [submitted, setSubmitted] = useState(false);
-    const [formData, setFormData] = useState({
-        photo: null,
-        fullName: "",
-        village: "",
-        panchayat: "",
-        block: "",
-        playingRole: "",
-        battingStyle: "",
-        bowlingStyle: "",
-        aadhaarNumber: "",
-        aadhaarCard: null,
-    });
+  const [submitted, setSubmitted] = useState(false);
 
-    const [photoPreview, setPhotoPreview] = useState(null);
+  const [formData, setFormData] = useState({
+    photo: null,
+    fullName: "",
+    email: "", // ✅ ADDED
+    village: "",
+    panchayat: "",
+    block: "",
+    playingRole: "",
+    battingStyle: "",
+    bowlingStyle: "",
+    aadhaarNumber: "",
+    aadhaarCard: null,
+  });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const [photoPreview, setPhotoPreview] = useState(null);
 
-    const handlePhotoUpload = (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (file) {
-            setFormData({ ...formData, photo: file });
-            const reader = new FileReader();
-            reader.onloadend = () => setPhotoPreview(reader.result);
-            reader.readAsDataURL(file);
-        }
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleAadhaarCardUpload = (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (file) {
-            setFormData({ ...formData, aadhaarCard: file });
-        }
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSubmitted(true);
-    };
-
-    if (submitted) {
-        return (
-            <div className="form-page">
-                <div className="success-container">
-                    <div className="success-icon">✔</div>
-                    <h1 className="success-title">Thank You!</h1>
-                    <p className="success-message">
-                        You submitted the form successfully. We’ll get back to you soon.
-                    </p>
-                    <button
-                        className="reset-button"
-                        onClick={() => {
-                            setSubmitted(false);
-                            setFormData({
-                                photo: null,
-                                fullName: "",
-                                village: "",
-                                panchayat: "",
-                                block: "",
-                                playingRole: "",
-                                battingStyle: "",
-                                bowlingStyle: "",
-                                aadhaarNumber: "",
-                                aadhaarCard: null,
-                            });
-                            setPhotoPreview(null);
-                        }}
-                    >
-                        Submit Another Response
-                    </button>
-                </div>
-            </div>
-        );
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setFormData({ ...formData, photo: file });
+      const reader = new FileReader();
+      reader.onloadend = () => setPhotoPreview(reader.result);
+      reader.readAsDataURL(file);
     }
+  };
 
+  const handleAadhaarCardUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setFormData({ ...formData, aadhaarCard: file });
+    }
+  };
+
+  // ✅ UPDATED SUBMIT HANDLER WITH EMAILJS
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const templateParams = {
+      fullName: formData.fullName,
+      email: formData.email,
+      village: formData.village,
+      panchayat: formData.panchayat,
+      block: formData.block,
+      playingRole: formData.playingRole,
+      style:
+        formData.battingStyle ||
+        formData.bowlingStyle ||
+        "N/A",
+      aadhaarNumber: formData.aadhaarNumber,
+      player_email: formData.email,
+    };
+
+    try {
+      // 1️⃣ ADMIN EMAIL
+      await emailjs.send(
+        "service_o2hfhxb",
+        "template_3e6l1p6",
+        templateParams,
+        "eLCe0UJU9NOTfI2JJ"
+      );
+
+      // 2️⃣ PLAYER CONFIRMATION EMAIL
+      await emailjs.send(
+        "service_o2hfhxb",
+        "template_neuj3ks",
+        templateParams,
+        "eLCe0UJU9NOTfI2JJ"
+      );
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      alert("Submission failed. Please try again.");
+    }
+  };
+
+  // ✅ SUCCESS SCREEN (UNCHANGED)
+  if (submitted) {
     return (
-        <div className="form-page">
-            <div className="form-container">
-                <div className="form-header">
-  <div className="league-logo">
-    <img
-      src="/dhoya-logo.jpg"
-      alt="Dhoya Premiere League Logo"
-      className="league-logo-img"
-    />
-  </div>
+      <div className="form-page">
+        <div className="success-container">
+          <div className="success-icon">✔</div>
+          <h1 className="success-title">Thank You!</h1>
+          <p className="success-message">
+            You submitted the form successfully. We’ll get back to you soon.
+          </p>
+          <button
+            className="reset-button"
+            onClick={() => {
+              setSubmitted(false);
+              setFormData({
+                photo: null,
+                fullName: "",
+                email: "",
+                village: "",
+                panchayat: "",
+                block: "",
+                playingRole: "",
+                battingStyle: "",
+                bowlingStyle: "",
+                aadhaarNumber: "",
+                aadhaarCard: null,
+              });
+              setPhotoPreview(null);
+            }}
+          >
+            Submit Another Response
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-  <h1 className="form-title">DHOYA PREMIERE LEAGUE</h1>
-  <p className="form-subtitle">SEASON - 7</p>
-</div>
+  return (
+    <div className="form-page">
+      <div className="form-container">
+        <div className="form-header">
+          <div className="league-logo">
+            <img
+              src="/dhoya-logo.png"
+              alt="Dhoya Premiere League Logo"
+              className="league-logo-img"
+            />
+          </div>
 
+          <h1 className="form-title">DHOYA PREMIERE LEAGUE</h1>
+          <p className="form-subtitle">SEASON - 7</p>
+        </div>
 
-                <form onSubmit={handleSubmit} className="contact-form">
-                    {/* Photo */}
-                    <div className="form-group photo-upload-group">
-                        <label>PLAYER PHOTO</label>
+        <form onSubmit={handleSubmit} className="contact-form">
+          {/* PHOTO */}
+          <div className="form-group photo-upload-group">
+            <label>PLAYER PHOTO</label>
+            <div className="photo-upload-container">
+              <input
+                type="file"
+                id="photo"
+                accept="image/*"
+                onChange={handlePhotoUpload}
+                className="file-input"
+              />
+              <label htmlFor="photo" className="file-upload-label">
+                {photoPreview ? (
+                  <img
+                    src={photoPreview}
+                    alt="Preview"
+                    className="photo-preview"
+                  />
+                ) : (
+                  <div className="upload-placeholder">
+                    <span>Upload Photo</span>
+                  </div>
+                )}
+              </label>
+            </div>
+          </div>
 
-                        <div className="photo-upload-container">
-                            <input
-                                type="file"
-                                id="photo"
-                                accept="image/*"
-                                onChange={handlePhotoUpload}
-                                className="file-input"
-                            />
+          {/* FULL NAME */}
+          <div className="form-group">
+            <label>FULL NAME*</label>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-                            <label htmlFor="photo" className="file-upload-label">
-                                {photoPreview ? (
-                                    <img src={photoPreview} alt="Preview" className="photo-preview" />
-                                ) : (
-                                    <div className="upload-placeholder">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="28"
-                                            height="28"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                            <polyline points="17 8 12 3 7 8" />
-                                            <line x1="12" y1="3" x2="12" y2="15" />
-                                        </svg>
-                                        <span>Upload Photo</span>
-                                    </div>
-                                )}
-                            </label>
-                        </div>
-                    </div>
+          {/* EMAIL (NEW) */}
+          <div className="form-group">
+            <label>EMAIL*</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-
-
-                    {/* Name */}
-                    <div className="form-group">
-                        <label>FULL NAME*</label>
-                        <input
-                            type="text"
-                            name="fullName"
-                            placeholder="Enter full name"
-                            value={formData.fullName}
-                            onChange={handleChange}
-                            required
-                        />
-
-                    </div>
-
-                    {/* Village */}
-                    <div className="form-group">
-                        <label>VILLAGE*</label>
-                        <input
-                            type="text"
-                            name="village"
-                            placeholder="Enter village name"
-                            value={formData.village}
-                            onChange={handleChange}
-                            required
-                        />
-
-                    </div>
-
+          {/* VILLAGE */}
+          <div className="form-group">
+            <label>VILLAGE*</label>
+            <input
+              type="text"
+              name="village"
+              value={formData.village}
+              onChange={handleChange}
+              required
+            />
+          </div>
                     {/* Panchayat */}
                     <div className="form-group">
                         <label>PANCHAYAT</label>
@@ -310,7 +344,7 @@ export default function PlayerRegistrationForm() {
                         </div>
 
                         {/* Aadhaar Upload */}
-                        <div className="form-group file-upload-group">
+                        {/* <div className="form-group file-upload-group">
                             <input
                                 type="file"
                                 id="aadhaarCard"
@@ -345,7 +379,7 @@ export default function PlayerRegistrationForm() {
                                     </span>
                                 </div>
                             </label>
-                        </div>
+                        </div> */}
                     </div>
 
 
