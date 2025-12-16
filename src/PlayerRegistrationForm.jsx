@@ -41,11 +41,41 @@ export default function PlayerRegistrationForm() {
       setFormData({ ...formData, aadhaarCard: file });
     }
   };
+  const uploadToCloudinary = async (file, folder) => {
+  const data = new FormData();
+  data.append("file", file);
+  data.append("upload_preset", "dpl_uploads");
+  data.append("folder", folder);
+
+  const res = await fetch(
+    "https://api.cloudinary.com/v1_1/dxtmzketd/upload",
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+
+  const result = await res.json();
+  return result.secure_url; // ✅ DOWNLOADABLE LINK
+};
+
 
   // ✅ UPDATED SUBMIT HANDLER WITH EMAILJS
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    // 1️⃣ Upload Player Photo
+    const playerPhotoUrl = formData.photo
+      ? await uploadToCloudinary(formData.photo, "player_photos")
+      : "";
+
+    // 2️⃣ Upload Aadhaar File
+    const aadhaarPhotoUrl = formData.aadhaarCard
+      ? await uploadToCloudinary(formData.aadhaarCard, "aadhaar_files")
+      : "";
+
+    // 3️⃣ Prepare email data
     const templateParams = {
       fullName: formData.fullName,
       email: formData.email,
@@ -58,32 +88,37 @@ export default function PlayerRegistrationForm() {
         formData.bowlingStyle ||
         "N/A",
       aadhaarNumber: formData.aadhaarNumber,
+
+      // ✅ CLOUDINARY DOWNLOAD LINKS
+      playerPhotoUrl,
+      aadhaarPhotoUrl,
+
       player_email: formData.email,
     };
 
-    try {
-      // 1️⃣ ADMIN EMAIL
-      await emailjs.send(
-        "service_o2hfhxb",
-        "template_3e6l1p6",
-        templateParams,
-        "eLCe0UJU9NOTfI2JJ"
-      );
+    // 4️⃣ Send ADMIN email
+    await emailjs.send(
+      "service_o2hfhxb",
+      "template_3e6l1p6",
+      templateParams,
+      "eLCe0UJU9NOTfI2JJ"
+    );
 
-      // 2️⃣ PLAYER CONFIRMATION EMAIL
-      await emailjs.send(
-        "service_o2hfhxb",
-        "template_neuj3ks",
-        templateParams,
-        "eLCe0UJU9NOTfI2JJ"
-      );
+    // 5️⃣ Send PLAYER confirmation email
+    await emailjs.send(
+      "service_o2hfhxb",
+      "template_neuj3ks",
+      templateParams,
+      "eLCe0UJU9NOTfI2JJ"
+    );
 
-      setSubmitted(true);
-    } catch (error) {
-      console.error(error);
-      alert("Submission failed. Please try again.");
-    }
-  };
+    setSubmitted(true);
+  } catch (error) {
+    console.error(error);
+    alert("Submission failed. Please try again.");
+  }
+};
+
 
   // ✅ SUCCESS SCREEN (UNCHANGED)
   if (submitted) {
@@ -347,7 +382,7 @@ export default function PlayerRegistrationForm() {
                         </div>
 
                         {/* Aadhaar Upload */}
-                        {/* <div className="form-group file-upload-group">
+                        <div className="form-group file-upload-group">
                             <input
                                 type="file"
                                 id="aadhaarCard"
@@ -382,7 +417,7 @@ export default function PlayerRegistrationForm() {
                                     </span>
                                 </div>
                             </label>
-                        </div> */}
+                        </div>
                     </div>
 
 
