@@ -207,7 +207,7 @@ const handleSubmit = async (e) => {
             <input
               type="text"
               name="fullName"
-              placeholder="Enter full name"
+              placeholder="Enter Full Name"
               value={formData.fullName}
               onChange={handleChange}
               required
@@ -220,7 +220,7 @@ const handleSubmit = async (e) => {
             <input
               type="email"
               name="email"
-              placeholder="Enter email address"
+              placeholder="Enter Email Address"
               value={formData.email}
               onChange={handleChange}
               required
@@ -245,7 +245,7 @@ const handleSubmit = async (e) => {
                         <input
                             type="text"
                             name="panchayat"
-                            placeholder="Enter panchayat name"
+                            placeholder="Enter Panchayat Name"
                             value={formData.panchayat}
                             onChange={handleChange}
                         />
@@ -258,7 +258,7 @@ const handleSubmit = async (e) => {
                         <input
                             type="text"
                             name="block"
-                            placeholder="Enter block name"
+                            placeholder="Enter Block Name"
                             value={formData.block}
                             onChange={handleChange}
                         />
