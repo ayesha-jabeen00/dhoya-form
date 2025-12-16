@@ -172,6 +172,7 @@ export default function PlayerRegistrationForm() {
             <input
               type="text"
               name="fullName"
+              placeholder="Enter full name"
               value={formData.fullName}
               onChange={handleChange}
               required
@@ -184,6 +185,7 @@ export default function PlayerRegistrationForm() {
             <input
               type="email"
               name="email"
+              placeholder="Enter email address"
               value={formData.email}
               onChange={handleChange}
               required
@@ -196,6 +198,7 @@ export default function PlayerRegistrationForm() {
             <input
               type="text"
               name="village"
+              placeholder="Enter village name"
               value={formData.village}
               onChange={handleChange}
               required

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --primary: #00d9ff;
+  --primary: #46c4da;
   --primary-dark: #00a8cc;
   --primary-light: #4de4ff;
   --accent: #ff6b9d;
@@ -14,11 +14,12 @@
   --bg-dark-hover: rgba(10, 8, 15, 0.6);
   --text-primary: #ffffff;
   --text-secondary: #e2e8f0;
-  --text-muted: #94a3b8;
+  --text-muted: #282c31;
   --border: rgba(0, 217, 255, 0.15);
   --border-focus: rgba(0, 217, 255, 0.35);
   --success: #00e676;
   --success-dark: #00c853;
+  --placeholder: #94a3b8;
 }
 
 .form-page {
@@ -109,7 +110,7 @@
   margin: 0 0 0.5rem 0;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #DC143C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -162,11 +163,12 @@
   outline: none;
   box-sizing: border-box;
 }
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-muted);
+.form-group input:focus::placeholder,
+.form-group textarea:focus::placeholder {
+  color: var(--placeholder);
 }
+
+
 
 .form-group input:focus,
 .form-group select:focus,
@@ -497,7 +499,7 @@
 
 .success-message {
   font-size: 1.125rem;
-  color:#1a1625 ;
+  color: var(--text-muted);
   margin: 0 0 2rem 0;
   line-height: 1.6;
 }
@@ -596,7 +598,7 @@
   justify-content: center;
   height: 100%;
   gap: 6px;
-  color: var(--text-muted);
+  color: var(--placeholder);
 }
 
 .upload-placeholder svg {
@@ -669,3 +671,27 @@
   color: var(--text-muted);
   font-size: 0.95rem;
 }
+/* PLACEHOLDER COLOR – FINAL FIX */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+/* Chrome, Edge, Safari */
+.form-group input::-webkit-input-placeholder,
+.form-group textarea::-webkit-input-placeholder {
+  color: var(--placeholder);
+}
+
+/* Firefox */
+.form-group input::-moz-placeholder,
+.form-group textarea::-moz-placeholder {
+  color: var(--placeholder);
+}
+
+/* Focus placeholder */
+/* .form-group input:focus::placeholder,
+.form-group textarea:focus::placeholder {
+  color: var(--placeholder);
+} */
